@@ -80,7 +80,9 @@ extension MenuPresenter: MenuPresenterInput {
                     var drinks = drinks
                     
                     for i in 0..<drinks.count {
-                        if let data = try? Data(contentsOf: URL(string: drinks[i].thumb)!) {
+                        if let thumbString = drinks[i].thumb,
+                            let thumbURL = URL(string: thumbString),
+                            let data = try? Data(contentsOf: thumbURL) {
                             drinks[i].thumbImageData = data
                         }
                         
@@ -90,6 +92,7 @@ extension MenuPresenter: MenuPresenterInput {
                             }
                         }
                     }
+                    
                     self.categories = self.categories.sorted()
                     drinks = drinks.sorted(by: { $0.category! < $1.category! })
                     UserDefaultsHelper.saveAllDrinks(allObjects: drinks)

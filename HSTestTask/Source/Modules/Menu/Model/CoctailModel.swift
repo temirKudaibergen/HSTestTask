@@ -8,14 +8,14 @@
 import Foundation
 
 public struct CoctailModel: Codable {
-    var drinks: [Drink]
+    var drinks: [Drink]?
 }
 
 public struct Drink: Codable {
     let name: String?
     let category: String?
     let instructions: String?
-    let thumb: String
+    let thumb: String?
     var thumbImageData: Data?
     
     enum CodingKeys: String, CodingKey {

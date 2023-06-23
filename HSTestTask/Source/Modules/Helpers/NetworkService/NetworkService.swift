@@ -37,7 +37,7 @@ final class NetworkService {
             
             do {
                 let decoder = try JSONDecoder().decode(CoctailModel.self, from: data)
-                completion(.success(decoder.drinks))
+                completion(.success(decoder.drinks ?? []))
                 
             } catch {
                 completion(.failure(error))
